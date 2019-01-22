@@ -288,7 +288,7 @@ def main():
     my_joystick.init()
 
     pygame.mixer.music.load('Tetris.mp3')
-    pygame.mixer.music.play(0)
+    pygame.mixer.music.play()
 
     while run:
         fall_speed = 0.27
