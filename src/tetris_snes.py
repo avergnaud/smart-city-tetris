@@ -1,5 +1,6 @@
 import pygame
 import random
+import sys
 
 """
 10 x 20 square grid
@@ -221,6 +222,8 @@ def clear_rows(grid, locked):
             inc += 1
             # add positions to remove from locked
             ind = i
+            print('clear row ', row)
+            sys.stdout.flush()
             for j in range(len(row)):
                 try:
                     del locked[(j, i)]
@@ -255,7 +258,7 @@ def draw_window(surface):
     surface.fill((0,0,0))
     # Tetris Title
     font = pygame.font.SysFont('comicsans', 60)
-    label = font.render('TETRIS', 1, (255,255,255))
+    label = font.render(sys.argv[1], 1, (255,255,255))
 
     surface.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), 30))
 
@@ -287,7 +290,7 @@ def main():
     my_joystick = pygame.joystick.Joystick(0)
     my_joystick.init()
 
-    pygame.mixer.music.load('Tetris.mp3')
+    pygame.mixer.music.load('/home/ubuntu/dev4/smart-city/tetris/workspace/src/Tetris.mp3')
     pygame.mixer.music.play()
 
     while run:
