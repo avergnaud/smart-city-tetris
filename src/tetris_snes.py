@@ -290,7 +290,7 @@ def main():
     my_joystick = pygame.joystick.Joystick(0)
     my_joystick.init()
 
-    pygame.mixer.music.load('/home/ubuntu/dev4/smart-city/tetris/workspace/src/Tetris.mp3')
+    pygame.mixer.music.load('/home/pi/dev/smart-city-tetris/src/Tetris.mp3')
     pygame.mixer.music.play()
 
     while run:
