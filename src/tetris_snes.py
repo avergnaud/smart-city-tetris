@@ -274,6 +274,8 @@ def draw_window(surface):
 
 def main():
     global grid
+    
+    my_joystick = pygame.joystick.Joystick(0)
 
     locked_positions = {}  # (x,y):(255,0,0)
     grid = create_grid(locked_positions)
@@ -284,11 +286,6 @@ def main():
     next_piece = get_shape()
     clock = pygame.time.Clock()
     fall_time = 0
-
-    pygame.init()
-    print("Joystics: ", pygame.joystick.get_count())
-    my_joystick = pygame.joystick.Joystick(0)
-    my_joystick.init()
 
     pygame.mixer.music.load('/home/pi/dev/smart-city-tetris/src/Tetris.mp3')
     pygame.mixer.music.play()
@@ -313,6 +310,9 @@ def main():
             '''
             snes controller events
             '''
+            if event.type == pygame.JOYBUTTONDOWN and event.button == 9:
+                run = False
+            
             if event.type == pygame.JOYAXISMOTION:
                 print(my_joystick.get_axis(0), my_joystick.get_axis(1))
 
@@ -382,6 +382,12 @@ def main():
 
 
 def main_menu():
+    
+    pygame.init()
+    print("Joystics: ", pygame.joystick.get_count())
+    my_joystick = pygame.joystick.Joystick(0)
+    my_joystick.init()
+    
     run = True
     while run:
         win.fill((0,0,0))
@@ -391,8 +397,9 @@ def main_menu():
             if event.type == pygame.QUIT:
                 run = False
 
-            if event.type == pygame.KEYDOWN:
+            if event.type == pygame.JOYBUTTONDOWN and event.button == 9:
                 main()
+    
     pygame.quit()
 
 

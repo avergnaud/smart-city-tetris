@@ -8,6 +8,10 @@ clock = pygame.time.Clock()
 
 while 1:
     for event in pygame.event.get():
+        if event.type == pygame.JOYBUTTONDOWN:
+            print("Joystick button pressed.")
+        if event.type == pygame.JOYBUTTONUP:
+            print("Joystick button released.")
         if event.type == pygame.JOYAXISMOTION:
             if my_joystick.get_axis(0) < -0.5 and my_joystick.get_axis(1) == 0:
                 print("gauche")
