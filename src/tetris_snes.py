@@ -1,6 +1,7 @@
 import pygame
 import random
 import sys
+import os
 
 """
 10 x 20 square grid
@@ -258,7 +259,10 @@ def draw_window(surface):
     surface.fill((0,0,0))
     # Tetris Title
     font = pygame.font.SysFont('comicsans', 60)
-    label = font.render(sys.argv[1], 1, (255,255,255))
+    joueur = "inconnu"
+    if len(sys.argv) == 2:
+        joueur = sys.argv[1]
+    label = font.render(joueur, 1, (255,255,255))
 
     surface.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), 30))
 
@@ -287,7 +291,7 @@ def main():
     clock = pygame.time.Clock()
     fall_time = 0
 
-    pygame.mixer.music.load('/home/pi/dev/smart-city-tetris/src/Tetris.mp3')
+    pygame.mixer.music.load(os.getcwd() + '/Tetris.mp3')
     pygame.mixer.music.play()
 
     while run:
