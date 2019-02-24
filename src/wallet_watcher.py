@@ -4,6 +4,7 @@ MAIS, il faut identifier un full node qui offre un feed ZMQ
 tcp://zmq.devnet.iota.org:5556 n'est pas stable...
 '''
 import time
+import webbrowser
 
 from iota import Iota, TryteString
 from iota import Tag, Transaction, TransactionHash
@@ -38,6 +39,8 @@ while True:
             name = TryteString(tx.tag).decode()
             print(name)
             print(TryteString(tx.signature_message_fragment).decode())
+
+        webbrowser.open('http://tangle.glumb.de/?hash=' + str(new_transactions_hashes[0]), new=2)
         start_game(name)
 
     time.sleep(5)

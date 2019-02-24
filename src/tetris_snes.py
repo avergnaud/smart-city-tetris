@@ -9,7 +9,7 @@ shapes: S, Z, I, O, J, L, T
 represented in order by 0 - 6
 """
 
-pygame.font.init()
+
 
 # GLOBALS VARS
 s_width = 800
@@ -319,8 +319,8 @@ def main(win, joueur):
 
             if event.type == pygame.QUIT:
                 run = False
-                pygame.display.quit()
-                quit()
+                #pygame.display.quit()
+                #quit()
 
             if event.type == pygame.JOYAXISMOTION:
 
@@ -377,10 +377,11 @@ def main(win, joueur):
         if check_lost(locked_positions):
             run = False
 
-    draw_text_middle("You Lost", 40, (255,255,255), win)
+    pygame.mixer.music.stop()
+    draw_text_middle("Game Over", 40, (255,255,255), win)
     pygame.display.update()
     pygame.time.delay(2000)
-    pygame.quit()
+    pygame.display.quit()
 
 
 def main_menu(win, joueur):
@@ -389,11 +390,15 @@ def main_menu(win, joueur):
     print("Joystics: ", pygame.joystick.get_count())
     my_joystick = pygame.joystick.Joystick(0)
     my_joystick.init()
-    
+
     run = True
     while run:
-        win.fill((0,0,0))
-        draw_text_middle('Press any key to begin.', 60, (255, 255, 255), win)
+        try:
+            win.fill((0,0,0))
+        except pygame.error:
+            run = False
+            break
+        draw_text_middle('Press start to begin.', 60, (255, 255, 255), win)
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -402,10 +407,11 @@ def main_menu(win, joueur):
             if event.type == pygame.JOYBUTTONDOWN and event.button == 9:
                 main(win, joueur)
     
-    pygame.quit()
+    pygame.display.quit()
 
 
 def start_game(joueur):
+    pygame.font.init()
     win = pygame.display.set_mode((s_width, s_height))
     pygame.display.set_caption('Tetris')
 
