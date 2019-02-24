@@ -1,6 +1,3 @@
-ce repo doit rester privé. Cf réutilisation de
-https://pastebin.com/embed_js/yaWTeF6y
-https://pastebin.com/doc_terms_of_service
 
 sudo python3 -m pip install --no-binary ':all:' pyota
 
