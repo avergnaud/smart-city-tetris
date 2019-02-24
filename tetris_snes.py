@@ -12,13 +12,14 @@ represented in order by 0 - 6
 
 
 # GLOBALS VARS
-s_width = 800
+s_width = 600
 s_height = 700
 play_width = 300  # meaning 300 // 10 = 30 width per block
 play_height = 600  # meaning 600 // 20 = 20 height per blo ck
 block_size = 30
 
-top_left_x = (s_width - play_width) // 2
+#top_left_x = (s_width - play_width) // 2
+top_left_x = 50
 top_left_y = s_height - play_height
 
 
@@ -399,7 +400,14 @@ def main_menu(win, joueur):
         except pygame.error:
             run = False
             break
-        draw_text_middle('Press start to begin.', 60, (255, 255, 255), win)
+
+        #draw_text_middle('Press start button to begin.', 50, (255, 255, 255), win)
+
+        font = pygame.font.SysFont('comicsans', 50, bold=True)
+        label = font.render('Press start button to begin.', 1, (255, 255, 255))
+        text_rect = label.get_rect(center=(s_width / 2, s_height / 2))
+        win.blit(label, text_rect)
+
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
