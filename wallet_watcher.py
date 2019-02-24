@@ -36,7 +36,8 @@ while True:
         new_transactions_hashes_trytes = api.get_trytes(new_transactions_hashes)
         for tryte in new_transactions_hashes_trytes['trytes']:
             tx = Transaction.from_tryte_string(tryte)
-            name = TryteString(tx.tag).decode()
+            #name = TryteString(tx.tag).decode()
+            name = TryteString(tx.signature_message_fragment).decode()
             print(name)
             print(TryteString(tx.signature_message_fragment).decode())
 
