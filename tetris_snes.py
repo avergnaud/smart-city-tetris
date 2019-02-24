@@ -319,8 +319,8 @@ def main(win, joueur):
 
             if event.type == pygame.QUIT:
                 run = False
-                #pygame.display.quit()
-                #quit()
+                pygame.display.quit()
+                pygame.quit()
 
             if event.type == pygame.JOYAXISMOTION:
 
@@ -382,6 +382,7 @@ def main(win, joueur):
     pygame.display.update()
     pygame.time.delay(2000)
     pygame.display.quit()
+    pygame.quit()
 
 
 def main_menu(win, joueur):
@@ -408,6 +409,7 @@ def main_menu(win, joueur):
                 main(win, joueur)
     
     pygame.display.quit()
+    pygame.quit()
 
 
 def start_game(joueur):

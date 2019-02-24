@@ -7,9 +7,9 @@ import time
 import webbrowser
 
 from iota import Iota, TryteString
-from iota import Tag, Transaction, TransactionHash
+from iota import Transaction
 
-from src.tetris_snes import start_game
+from tetris_snes import start_game
 
 api = Iota("https://nodes.thetangle.org:443")
 
