@@ -255,13 +255,10 @@ def draw_next_shape(shape, surface):
     surface.blit(label, (sx + 10, sy- 30))
 
 
-def draw_window(surface):
+def draw_window(surface, joueur):
     surface.fill((0,0,0))
     # Tetris Title
     font = pygame.font.SysFont('comicsans', 60)
-    joueur = "inconnu"
-    if len(sys.argv) == 2:
-        joueur = sys.argv[1]
     label = font.render(joueur, 1, (255,255,255))
 
     surface.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), 30))
@@ -276,7 +273,7 @@ def draw_window(surface):
     # pygame.display.update()
 
 
-def main():
+def main(win, joueur):
     global grid
     
     my_joystick = pygame.joystick.Joystick(0)
@@ -372,7 +369,7 @@ def main():
             # call four times to check for multiple clear rows
             clear_rows(grid, locked_positions)
 
-        draw_window(win)
+        draw_window(win, joueur)
         draw_next_shape(next_piece, win)
         pygame.display.update()
 
@@ -383,9 +380,10 @@ def main():
     draw_text_middle("You Lost", 40, (255,255,255), win)
     pygame.display.update()
     pygame.time.delay(2000)
+    pygame.quit()
 
 
-def main_menu():
+def main_menu(win, joueur):
     
     pygame.init()
     print("Joystics: ", pygame.joystick.get_count())
@@ -402,12 +400,24 @@ def main_menu():
                 run = False
 
             if event.type == pygame.JOYBUTTONDOWN and event.button == 9:
-                main()
+                main(win, joueur)
     
     pygame.quit()
 
 
-win = pygame.display.set_mode((s_width, s_height))
-pygame.display.set_caption('Tetris')
+def start_game(joueur):
+    win = pygame.display.set_mode((s_width, s_height))
+    pygame.display.set_caption('Tetris')
 
-main_menu()  # start game
+    main_menu(win, joueur)  # start game
+
+
+if __name__ == "__main__":
+    #win = pygame.display.set_mode((s_width, s_height))
+    #pygame.display.set_caption('Tetris')
+
+    joueur = "inconnu"
+    if len(sys.argv) == 2:
+        joueur = sys.argv[1]
+
+    start_game(joueur)  # start game

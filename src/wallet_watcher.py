@@ -8,7 +8,9 @@ import time
 from iota import Iota, TryteString
 from iota import Tag, Transaction, TransactionHash
 
-api = Iota("https://nodes.devnet.thetangle.org:443")
+from src.tetris_snes import start_game
+
+api = Iota("https://nodes.thetangle.org:443")
 
 transactions = api.find_transactions(addresses=["GHLEMUXUIYJK9SKXOUMNEKZBRDHZVFUURXOYMQQODSWEGYRROOGGILVYTGTCCLOYDCETCKHUT9LRXJMMD"])
 transactions_hashes = transactions['hashes']
@@ -29,11 +31,14 @@ while True:
     if len(new_transactions_hashes) != 0:
         transactions_hashes += new_transactions_hashes
 
+        name = ""
         new_transactions_hashes_trytes = api.get_trytes(new_transactions_hashes)
         for tryte in new_transactions_hashes_trytes['trytes']:
             tx = Transaction.from_tryte_string(tryte)
-            print(TryteString(tx.tag).decode())
+            name = TryteString(tx.tag).decode()
+            print(name)
             print(TryteString(tx.signature_message_fragment).decode())
+        start_game(name)
 
     time.sleep(5)
 
