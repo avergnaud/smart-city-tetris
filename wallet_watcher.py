@@ -2,6 +2,9 @@
 une autre solution est d'utiliser ZMQ
 MAIS, il faut identifier un full node qui offre un feed ZMQ
 tcp://zmq.devnet.iota.org:5556 n'est pas stable...
+
+attention : ici on utilise des 0 value transactions
+si on attendait un paiement, il faudrait attendre la confirmation avant de lancer le jeu
 '''
 import time
 import webbrowser
